@@ -17,10 +17,11 @@ const MovieDetails = () => {
         .finally(setIsLoading(false));
     };
     getData();
-  }, []);
+  }, [movieId]);
 
   return (
     <main>
+      {isLoading && <div>IS LOADING</div>}
       {details && (
         <Container>
           <div>
