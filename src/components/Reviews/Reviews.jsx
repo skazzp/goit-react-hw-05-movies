@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReviews } from 'services/MovieAPI';
-import { List, Item, Avatar, User, Text } from './Reviews.styled';
+import {
+  List,
+  Item,
+  // Avatar,
+  User,
+  Text,
+} from './Reviews.styled';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState(null);
@@ -24,9 +30,15 @@ const Reviews = () => {
 
   return (
     <List>
-      {reviews ? (
+      {reviews && reviews.length ? (
         reviews.map(review => {
-          const { author, author_details, content, created_at, id } = review;
+          const {
+            author,
+            // author_details,
+            content,
+            created_at,
+            id,
+          } = review;
           const date = new Date(created_at);
           const created = date.toLocaleString();
           return (
@@ -47,12 +59,12 @@ const Reviews = () => {
                   <p>{created}</p>
                 </div>
               </User>
-              <p>{content}</p>
+              <Text>{content}</Text>
             </Item>
           );
         })
       ) : (
-        <p></p>
+        <h2>No reviews avaliable</h2>
       )}
     </List>
   );
