@@ -20,5 +20,4 @@ const Movies = () => {
 };
 
 export default Movies;
-// "name": "goit-react-hw-05-movies",
-// "homepage": "https://skazzp.github.io/goit-react-hw-05-movies/",
+
