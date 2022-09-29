@@ -1,12 +1,19 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieById } from 'services/MovieAPI';
-import { Poster, Container, MoreInfo, Link } from './MovieDetails.styled';
+import {
+  Poster,
+  Container,
+  MoreInfo,
+  LinkBtn,
+  BackLink,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [details, setDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
   const { movieId } = useParams();
   useEffect(() => {
     setIsLoading(true);
@@ -22,6 +29,7 @@ const MovieDetails = () => {
   return (
     <main>
       {isLoading && <div>IS LOADING</div>}
+      <BackLink to={backLinkHref}>Go back</BackLink>
       {details && (
         <Container>
           <div>
@@ -42,10 +50,16 @@ const MovieDetails = () => {
       )}
       <MoreInfo>
         <div>
-          <Link to={'cast'}>Cast</Link>
-          <Link to={'reviews'}>Reviews</Link>
+          <LinkBtn to={'cast'} state={{ from: location.state?.from }}>
+            Cast
+          </LinkBtn>
+          <LinkBtn to={'reviews'} state={{ from: location.state?.from }}>
+            Reviews
+          </LinkBtn>
         </div>
-        <Outlet />
+        <Suspense fallback={<div>LOADING !</div>}>
+          <Outlet />
+        </Suspense>
       </MoreInfo>
     </main>
   );

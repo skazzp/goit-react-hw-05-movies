@@ -61,3 +61,16 @@ export const getReviews = id => {
   const response = axios(config).then(data => data);
   return response;
 };
+
+export const searchMovies = (query, page) => {
+  const config = {
+    url: `https://api.themoviedb.org/3/search/movie`,
+    params: {
+      api_key: API_KEY,
+      query: query,
+      page: page,
+    },
+  };
+  const response = axios(config).then(data => data);
+  return response;
+};

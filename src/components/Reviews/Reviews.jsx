@@ -19,7 +19,7 @@ const Reviews = () => {
     const getData = () => {
       getReviews(movieId)
         .then(response => {
-          console.log(response);
+          // console.log(response);
           setReviews(() => response.data.results);
         })
         .catch(err => console.log(err))

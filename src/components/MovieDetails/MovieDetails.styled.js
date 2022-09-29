@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export const Poster = styled.img`
   display: block;
@@ -20,7 +20,7 @@ export const MoreInfo = styled.div`
   flex-direction: column;
   gap: 25px;
 `;
-export const Link = styled(NavLink)`
+export const LinkBtn = styled(NavLink)`
   padding: 8px 16px;
   border-radius: 4px;
   text-decoration: none;
@@ -31,4 +31,12 @@ export const Link = styled(NavLink)`
     color: white;
     background-color: orangered;
   }
+`;
+export const BackLink = styled(Link)`
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  color: white;
+  background-color: orangered;
 `;
