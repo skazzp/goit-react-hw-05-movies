@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { FormContainer } from './SearchForm.styled';
+import PropTypes from 'prop-types';
 
 const SearchForm = ({ handleSearch }) => {
   const [input, setInput] = useState('');
@@ -34,3 +35,5 @@ const SearchForm = ({ handleSearch }) => {
 };
 
 export default SearchForm;
+
+SearchForm.propTypes = { handleSearch: PropTypes.func };
