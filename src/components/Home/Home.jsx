@@ -1,27 +1,42 @@
 import { getPopular } from 'services/MovieAPI';
 import { useState, useEffect } from 'react';
 import { List, Item, Poster } from './Home.styled';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import Pagination from 'rc-pagination';
+import 'rc-pagination/assets/index.css';
 
 const Home = () => {
   const [popular, setPopular] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [totalPages, setTotalPages] = useState(null);
   const location = useLocation();
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = searchParams.get('page') ?? '1';
+  const updatePage = p => {
+    if (p === page) return;
+    setSearchParams({
+      page: p,
+    });
+    //   setCurrentPage(p);
+    //   const to = countPerPage * p;
+    //   const from = to - countPerPage;
+    //   setCollection(cloneDeep(allData.slice(from, to)));
+  };
   useEffect(() => {
     setIsLoading(true);
     const getHomePageData = () => {
-      getPopular()
+      getPopular(page)
         .then(response => {
           setPopular(() => response.data);
-          console.log(response);
+          setTotalPages(() => response.data.total_pages);
+          console.log(response.data);
         })
         .catch(err => console.log(err))
         .finally(setIsLoading(false));
     };
     getHomePageData();
-  }, []);
-
+  }, [page]);
+  // useEffect(() => {}, [totalPages]);
   return (
     <main>
       {isLoading && <div>LOADING</div>}
@@ -42,6 +57,12 @@ const Home = () => {
             );
           })}
       </List>
+      <Pagination
+        onChange={updatePage}
+        current={page}
+        total={totalPages}
+        showLessItems={true}
+      />
     </main>
   );
 };

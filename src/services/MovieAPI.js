@@ -1,25 +1,13 @@
 import axios from 'axios';
 
-// const config = {
-//   url: 'https://pixabay.com/api/',
-//   params: {
-//     key: '3843a9873b3ac5149ba48e5287e730a6',
-//     q: '',
-//     image_type: 'photo',
-//     orientation: 'horizontal',
-//     safesearch: true,
-//     per_page: 12,
-//     page: 1,
-//   },
-// };
 const API_KEY = '3843a9873b3ac5149ba48e5287e730a6';
 
-export const getPopular = () => {
+export const getPopular = page => {
   const config = {
     url: 'https://api.themoviedb.org/3/trending/movie/day',
     params: {
       api_key: API_KEY,
-      page: 1,
+      page: page,
     },
   };
   const response = axios(config).then(data => data);
