@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { FormContainer } from './SearchForm.styled';
 
 const SearchForm = ({ handleSearch }) => {
   const [input, setInput] = useState('');
@@ -15,18 +16,20 @@ const SearchForm = ({ handleSearch }) => {
     setSearchParams({ query: input });
   };
   return (
-    <form action="submit" onSubmit={handleSubmit}>
-      <label htmlFor="">
-        <input
-          type="text"
-          name="search"
-          value={input}
-          onChange={handleInput}
-          autoComplete="off"
-        />
-      </label>
-      <button type="submit">Search</button>
-    </form>
+    <FormContainer>
+      <form action="submit" onSubmit={handleSubmit}>
+        <label htmlFor="">
+          <input
+            type="text"
+            name="search"
+            value={input}
+            onChange={handleInput}
+            autoComplete="off"
+          />
+        </label>
+        <button type="submit">Search</button>
+      </form>
+    </FormContainer>
   );
 };
 

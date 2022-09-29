@@ -7,8 +7,8 @@ export const List = styled.ul`
   justify-content: space-evenly;
   align-items: center;
 
-  padding: 50px;
-  margin: 0;
+  padding: 0px;
+  margin: 20px;
   gap: 20px;
 `;
 export const Item = styled.li`

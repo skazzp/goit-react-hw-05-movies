@@ -41,6 +41,11 @@ const Reviews = () => {
           } = review;
           const date = new Date(created_at);
           const created = date.toLocaleString();
+          let text = content;
+          // content.split(' ').length > 50
+          //   ? content.split(' ').slice(0, 50).join(' ')
+          //   : content;
+          // console.log(content);
           return (
             <Item key={id}>
               <User>
@@ -59,7 +64,7 @@ const Reviews = () => {
                   <p>{created}</p>
                 </div>
               </User>
-              <Text>{content}</Text>
+              <Text>{text}</Text>
             </Item>
           );
         })

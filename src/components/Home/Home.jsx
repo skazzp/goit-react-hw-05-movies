@@ -17,10 +17,6 @@ const Home = () => {
     setSearchParams({
       page: p,
     });
-    //   setCurrentPage(p);
-    //   const to = countPerPage * p;
-    //   const from = to - countPerPage;
-    //   setCollection(cloneDeep(allData.slice(from, to)));
   };
   useEffect(() => {
     setIsLoading(true);
@@ -29,14 +25,13 @@ const Home = () => {
         .then(response => {
           setPopular(() => response.data);
           setTotalPages(() => response.data.total_pages);
-          console.log(response.data);
+          // console.log(response.data);
         })
         .catch(err => console.log(err))
         .finally(setIsLoading(false));
     };
     getHomePageData();
   }, [page]);
-  // useEffect(() => {}, [totalPages]);
   return (
     <main>
       {isLoading && <div>LOADING</div>}

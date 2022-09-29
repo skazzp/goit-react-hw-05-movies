@@ -13,13 +13,13 @@ const Movies = () => {
   const location = useLocation();
 
   const handleSearch = input => {
-    console.log(input);
     setInput(input);
   };
   useEffect(() => {
     if (!input) return;
     const getData = () => {
       searchMovies(input, page).then(response => {
+        console.log(response);
         setMovies(response.data);
       });
     };
@@ -33,6 +33,7 @@ const Movies = () => {
       <SearchForm handleSearch={handleSearch} />
 
       <List>
+        {movies && movies.results.length === 0 && <div>No results</div>}
         {movies &&
           movies.results.map(movie => {
             const { id, title, poster_path } = movie;
