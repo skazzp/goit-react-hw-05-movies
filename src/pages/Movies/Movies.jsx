@@ -19,7 +19,7 @@ const Movies = () => {
     if (!input) return;
     const getData = () => {
       searchMovies(input, page).then(response => {
-        console.log(response);
+        // console.log(response);
         setMovies(response.data);
       });
     };
@@ -31,7 +31,6 @@ const Movies = () => {
   return (
     <div>
       <SearchForm handleSearch={handleSearch} />
-
       <List>
         {movies && movies.results.length === 0 && <div>No results</div>}
         {movies &&
